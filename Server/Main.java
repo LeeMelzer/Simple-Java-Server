@@ -65,7 +65,7 @@ public class Main {
                         }
                         
                         else {
-                            // Just send back a simple "Hello World"
+                            // Send back a friendly whatchya looking for
                             OutputStream clientOutput = client.getOutputStream();
                             clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());
