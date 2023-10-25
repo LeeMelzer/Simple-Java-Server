@@ -19,6 +19,7 @@ public class Main {
                     
                     BufferedReader br = new BufferedReader(isr);
 
+                    // Read the first request from the client
                     StringBuilder request= new StringBuilder();
 
                     String line;
@@ -30,8 +31,38 @@ public class Main {
 
                     System.out.println("--REQUEST--");
                     System.out.println(request);
+                    
+                    // Decide how we'd like to respond
+                    
+                        // Just send back a simple "Hello World"
+                        OutputStream clientOutput = client.getOutputStream();
+                        clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                        clientOutput.write(("\r\n").getBytes());
+                        clientOutput.write(("Hello World").getBytes());
+                        clientOutput.flush();
+
+                        // Send back an image
+                        // Load the image from the filesystem
+                        FileInputStream image = new FileInputStream("image.jpg");
+                        System.out.println(image.toString());
+                        
+                        // Send back the image
+                        OutputStream clientOutput = client.getOutputStream();
+                        clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                        clientOutput.write(("\r\n").getBytes());
+                        clientOutput.write((image.readAllBytes()));
+                        clientOutput.flush();
+                        
+                        
 
 
+
+
+
+
+
+                     
+                     client.close();
                 } 
             }
         }
